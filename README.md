@@ -8,5 +8,5 @@ or
 ```bash
 vibrance.py off
 ```
-## Usage for auto-vribrance.py
+## Usage for auto-vibrance.py
 Just run the script and it will automatically turn it on/off
