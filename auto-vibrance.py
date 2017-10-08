@@ -3,7 +3,10 @@ import subprocess
 import psutil
 import time
 
-def set_vibrance(value=300):
+min_value = 300
+max_value = 1023
+
+def set_vibrance(value=min_value):
     line=f"nvidia-settings -a \"DigitalVibrance={value}\"\
             > /dev/null"
     subprocess.check_output(
@@ -23,8 +26,8 @@ while 1:
     x=[p.name() for p in psutil.process_iter()]
     if csgo in x and csgo_run == False:
         csgo_run=True
-        set_vibrance(1023)
-    elif csgo not in x and get_vibrance_value() != 300:
+        set_vibrance(max_value)
+    elif csgo not in x and get_vibrance_value() != min_value:
         csgo_run=False
         set_vibrance()
     time.sleep(1)
