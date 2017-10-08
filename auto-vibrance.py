@@ -20,14 +20,15 @@ def get_vibrance_value():
     )).split(" ")
     return int(x[5].replace(".\\n", ""))
 
-csgo="csgo_linux64"
-csgo_run=False
-while 1:
+def is_csgo():
     x=[p.name() for p in psutil.process_iter()]
-    if csgo in x and csgo_run == False:
-        csgo_run=True
+    if "csgo_linux64" in x:
+        return True
+    else: return False
+
+while 1:
+    if is_csgo() and get_vibrance_value() != max_value:
         set_vibrance(max_value)
-    elif csgo not in x and get_vibrance_value() != min_value:
-        csgo_run=False
+    elif is_csgo() == False and get_vibrance_value() != min_value:
         set_vibrance()
     time.sleep(1)
