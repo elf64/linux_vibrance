@@ -1,13 +1,24 @@
 import sys
 import subprocess
 
-VAL = 1023
-ON = f"nvidia-settings -a \"DigitalVibrance={VAL}\" > /dev/null"
-OFF = "nvidia-settings -a \"DigitalVibrance=0\" > /dev/null"
-if sys.argv[1] == "on":
-    subprocess.check_output(['bash', '-c', ON])
-elif sys.argv[1] == "off":
-    subprocess.check_output(['bash', '-c', OFF])
-else:
-    print("Not a valid argument!\nTry to use \"on\" or \"off\"")
+x=[i for i in sys.argv]
+def set_vibrance(value=300):
+    line=f"nvidia-settings -a \"DigitalVibrance={value}\" \
+        > /dev/null"
+    subprocess.check_output(
+            ['bash', '-c', line]
+            )
+    print(f"nvidia-settings vibrance value was set to {value}.")
 
+if len(x) == 2:
+    try:
+        set_vibrance(int(x[1]))
+    except ValueError:
+        if x[1] == "on":
+            set_vibrance(1023)
+        else:
+            set_vibrance()
+else:
+    print("No arguments or too many arguments.\
+            \nSetting default vibrance value!")
+    set_vibrance()
