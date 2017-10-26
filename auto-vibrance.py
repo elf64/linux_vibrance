@@ -27,8 +27,11 @@ def is_csgo():
     else: return False
 
 while 1:
-    if is_csgo() and get_vibrance_value() != max_value:
-        set_vibrance(max_value)
-    elif is_csgo() == False and get_vibrance_value() != min_value:
-        set_vibrance()
-    time.sleep(1)
+    try:
+        if is_csgo() and get_vibrance_value() != max_value:
+            set_vibrance(max_value)
+        elif is_csgo() == False and get_vibrance_value() != min_value:
+            set_vibrance()
+        time.sleep(1)
+    except:
+        pass
