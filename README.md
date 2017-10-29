@@ -3,7 +3,6 @@ Script to set nvidia digital vibrance on/off
 ## Usage for vibrance.py
 ```bash
 python vibrance.py      (vibrance value set to 300)
-python vibrance.py on   (vibrance value set to 1023)
 python vibrance.py 600  (costum vibrance value)
 ```
 ## Usage for auto-vibrance.py
